@@ -56,5 +56,5 @@ std::vector<std::vector<std::pair<size_t, float>>> SearchServer::search(const st
 
 void SearchServer::startIndexing()
 {
-	index.updateDocumentBase();
+	if(!index.isBusy) index.updateDocumentBase();
 }

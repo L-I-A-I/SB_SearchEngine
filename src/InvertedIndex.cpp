@@ -8,6 +8,7 @@ InvertedIndex::InvertedIndex(const std::vector<std::string>& docs)
 
 void InvertedIndex::updateDocumentBase(const std::vector<std::string>& docs)
 {
+	isBusy = true;
 	freqDictionary.clear();
 
 	std::mutex dictMute, idMute;
@@ -52,10 +53,20 @@ void InvertedIndex::updateDocumentBase(const std::vector<std::string>& docs)
 	}
 
 	for (auto& t : cores) t.join();
+	isBusy = false;
 }
 
 std::vector<std::pair<size_t, size_t>> InvertedIndex::getWordCount(const std::string& word)
 {
+	if (isBusy)
+	{
+		std::cout << "\nWaiting for indexing to finish\n";
+
+		while (isBusy)
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+		}
+	}
 	if (freqDictionary.find(word) != freqDictionary.end())
 	{
 		return freqDictionary[word];

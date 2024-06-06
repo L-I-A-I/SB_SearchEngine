@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
 		while (input(command))
 		{
 			if (command == "put") ConverterJSON::putAnswers(server.search());
+			else if (command == "index") server.startIndexing();
 			else std::cout << "Wrong command\n";
 		}
 	}
