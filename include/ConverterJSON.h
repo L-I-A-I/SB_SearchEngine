@@ -13,7 +13,7 @@ class ConverterJSON
 public:
 
 	static bool checkConfig();
-	static int getIndexInterval();
+	static size_t getIndexInterval();
 	static std::vector<std::string> getDocumentsAddresses();
 	static std::vector<std::string> getRequests();
 	static void putAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers);

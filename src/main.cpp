@@ -38,4 +38,7 @@ int main(int argc, char* argv[])
 			else std::cout << "Wrong command\n";
 		}
 	}
+
+	std::cout << "\n" << "EXITING";
+	std::cin.get();
 }
