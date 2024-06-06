@@ -14,7 +14,7 @@ void InvertedIndex::updateDocumentBase(const std::vector<std::string>& docs)
 	size_t docId{ 0 };
 	std::vector<std::thread> cores;
 
-	for (size_t i = 0; i < std::thread::hardware_concurrency(); ++i)
+	for (size_t i = 0; i < std::thread::hardware_concurrency() && i < docs.size(); ++i)
 	{
 		cores.emplace_back(std::thread([&]() {
 			while (docId < docs.size())
@@ -49,9 +49,9 @@ void InvertedIndex::updateDocumentBase(const std::vector<std::string>& docs)
 				}
 			}})
 		);
-
-		cores[i].join();
 	}
+
+	for (auto& t : cores) t.join();
 }
 
 std::vector<std::pair<size_t, size_t>> InvertedIndex::getWordCount(const std::string& word)

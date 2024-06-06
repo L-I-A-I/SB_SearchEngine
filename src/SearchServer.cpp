@@ -1,5 +1,7 @@
 #include "SearchServer.h"
 
+SearchServer::SearchServer(const std::vector<std::string>& docs) : index{docs}{}
+
 std::vector<std::vector<std::pair<size_t, float>>> SearchServer::search(const std::vector<std::string>& reqs)
 {
 	std::vector<std::vector<std::pair<size_t, float>>> answer;

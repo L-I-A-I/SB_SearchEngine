@@ -3,6 +3,7 @@
 #include "ConverterJSON.h"
 
 #include <vector>
+#include <thread>
 #include <mutex>
 
 class InvertedIndex
