@@ -1,4 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.6.0)
+project(SB_Search_Engine)
 
 set(INC ${CMAKE_SOURCE_DIR}/include)
 set(SRC ${CMAKE_SOURCE_DIR}/src)
