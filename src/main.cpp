@@ -36,11 +36,19 @@ int main(int argc, char* argv[])
 
 		while (input(command))
 		{
-			if (command == "put") ConverterJSON::putAnswers(server.search());
+			if (command == "put")
+			{
+				if(ConverterJSON::putAnswers(server.search()))
+					std::cout << "\nPut is complete\n";
+				else 
+					std::cout << "\nPut is NOT complete\n";
+			}
 			else if (command == "index")
 			{
-				server.startIndexing();
-				std::cout << "\nIndexing is complete\n";
+				if(server.startIndexing())
+					std::cout << "\nManual indexing is complete\n";
+				else
+					std::cout << "\nManual indexing is NOT complete\n";
 			}
 			else std::cout << "Wrong command\n";
 		}

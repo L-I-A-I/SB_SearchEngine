@@ -16,6 +16,6 @@ public:
 	static size_t getIndexInterval();
 	static std::vector<std::string> getDocumentsAddresses();
 	static std::vector<std::string> getRequests();
-	static void putAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers);
+	static bool putAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers);
 	static size_t getResponsesLimit();
 };

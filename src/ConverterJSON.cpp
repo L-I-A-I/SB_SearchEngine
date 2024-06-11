@@ -139,7 +139,7 @@ std::vector<std::string> ConverterJSON::getRequests()
 	}
 }
 
-void ConverterJSON::putAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers)
+bool ConverterJSON::putAnswers(std::vector<std::vector<std::pair<size_t, float>>> answers)
 {
 	try
 	{
@@ -179,9 +179,12 @@ void ConverterJSON::putAnswers(std::vector<std::vector<std::pair<size_t, float>>
 		std::ofstream file("answers.json");
 		file << jAns;
 		file.close();
+
+		return true;
 	}
 	catch (const json::exception& x)
 	{
 		std::cerr <<"\n" << "Put ERROR:\n" << x.what() << "\n";
+		return false;
 	}
 }

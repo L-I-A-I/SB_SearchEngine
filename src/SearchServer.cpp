@@ -54,8 +54,16 @@ std::vector<std::vector<std::pair<size_t, float>>> SearchServer::search(const st
     return answer;
 }
 
-void SearchServer::startIndexing()
+bool SearchServer::startIndexing()
 {
-	if (index.isBusy) std::cout << "\nAnother indexing is in progress\n";
-	else index.updateDocumentBase();
+	if (index.isBusy)
+	{
+		std::cout << "\nAnother indexing is in progress\n";
+		return false;
+	}
+	else
+	{
+		index.updateDocumentBase();
+		return true;
+	}
 }
