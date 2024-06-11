@@ -19,11 +19,13 @@ bool input(std::string& command)
 
 int main(int argc, char* argv[])
 {	
-	if (ConverterJSON::checkConfig()) {
+	if (ConverterJSON::checkConfig())
+	{
 		SearchServer server;
 		std::string command;
 
-		std::thread indexing([&server]() {
+		std::thread indexing([&server]()
+		{
 			while (true)
 			{
 				std::this_thread::sleep_for(std::chrono::seconds(ConverterJSON::getIndexInterval()));
@@ -35,7 +37,11 @@ int main(int argc, char* argv[])
 		while (input(command))
 		{
 			if (command == "put") ConverterJSON::putAnswers(server.search());
-			else if (command == "index") server.startIndexing();
+			else if (command == "index")
+			{
+				server.startIndexing();
+				std::cout << "\nIndexing is complete\n";
+			}
 			else std::cout << "Wrong command\n";
 		}
 	}
